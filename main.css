@@ -102,7 +102,7 @@ body {
   opacity: 1;
   font-family: RoyalBrand;
   font-size: 20px;
-  z-index: 999;
+  z-index: 990;
   position: absolute;
 }
 
@@ -147,10 +147,11 @@ body {
 }
 
 #cover {
-  width: 103%;
+  width: 248px;
   height: 40px;
   position: absolute;
-  background-color: red;
+  background-color: #fff;
   bottom: -48px;
-  left: -5px;
+  left: -14px;
+  z-index: 999;
 }

@@ -23,7 +23,7 @@ document.getElementById("container").addEventListener("click", () => {
   if (tt <= 0.15) {
     document.getElementById("container").classList.toggle("flipped");
   }
-  //document.getElementById("container").classList.toggle("flipped");
+  document.getElementById("container").classList.toggle("flipped");
 });
 
 function detectShake(event) {
