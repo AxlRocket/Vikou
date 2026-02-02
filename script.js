@@ -8,6 +8,8 @@ let isListening = false;
 let tt = 1.0;
 let qq = 0.0;
 
+document.getElementById("test").addEventListener("click", handleShake);
+
 function handleShake() {
   document.getElementById("status").textContent =
     "Téléphone secoué ! " + new Date().toLocaleTimeString();
