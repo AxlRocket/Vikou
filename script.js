@@ -8,7 +8,7 @@ let isListening = false;
 let tt = 1.0;
 let qq = 0.0;
 
-document.getElementById("test").addEventListener("click", handleShake);
+//document.getElementById("test").addEventListener("click", handleShake);
 
 function handleShake() {
   console.log("Téléphone secoué !");
