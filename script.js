@@ -11,10 +11,6 @@ let qq = 0.0;
 document.getElementById("test").addEventListener("click", handleShake);
 
 function handleShake() {
-  document.getElementById("status").textContent =
-    "Téléphone secoué ! " + new Date().toLocaleTimeString();
-  console.log("SHAKE DETECTED!");
-
   console.log("Téléphone secoué !");
   tt = tt - 0.05;
   qq = qq + 0.05;
