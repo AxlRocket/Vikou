@@ -24,7 +24,7 @@ function handleShake() {
   console.log("Téléphone secoué !");
   tt = tt - 0.1;
 
-  if (document.getElementById("op").opacity > 0)
+  if (document.getElementById("op").style.opacity > 0)
     document.getElementById("op").style.opacity = tt;
 
   // Votre code ici (vibration, animation, etc.)
