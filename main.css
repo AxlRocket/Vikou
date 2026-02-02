@@ -59,7 +59,7 @@ body {
 }
 
 #container {
-  display: none;
+  display: block;
 }
 
 .face {
@@ -102,12 +102,12 @@ body {
   opacity: 1;
   font-family: RoyalBrand;
   font-size: 20px;
-  z-index: 990;
+  z-index: 0;
   position: absolute;
 }
 
 #question {
-  opacity: 0;
+  opacity: 1;
 }
 
 .opacity-div {
@@ -150,7 +150,7 @@ body {
   width: 248px;
   height: 40px;
   position: absolute;
-  background-color: red;
+  background-color: #fff;
   bottom: -48px;
   left: -14px;
   z-index: 999;
