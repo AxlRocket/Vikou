@@ -145,3 +145,12 @@ body {
   text-align: center;
   font-size: 18px;
 }
+
+#cover {
+  width: 103%;
+  height: 40px;
+  position: absolute;
+  background-color: #fff;
+  bottom: -48px;
+  left: -5px;
+}

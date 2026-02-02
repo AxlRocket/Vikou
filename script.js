@@ -1,4 +1,4 @@
-const SHAKE_THRESHOLD = 30;
+const SHAKE_THRESHOLD = 50;
 let lastTime = 0;
 let lastX = 0,
   lastY = 0,
@@ -23,7 +23,7 @@ document.getElementById("container").addEventListener("click", () => {
   if (tt <= 0.15) {
     document.getElementById("container").classList.toggle("flipped");
   }
-  //document.getElementById("container").classList.toggle("flipped");
+  document.getElementById("container").classList.toggle("flipped");
 });
 
 function detectShake(event) {
