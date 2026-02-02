@@ -1,5 +1,126 @@
+const SHAKE_THRESHOLD = 30;
+let lastTime = 0;
+let lastX = 0,
+  lastY = 0,
+  lastZ = 0;
+let isListening = false;
+
+let tt = 1.0;
+
+document.getElementById("btnTest").addEventListener("click", changeOpactity);
+
+function changeOpactity() {
+  console.log("changeOpacity");
+
+  tt = tt - 0.05;
+
+  document.getElementById("op").style.opacity = tt;
+
+  /*if (document.getElementById("op").opacity > 0)
+    document.getElementById("op").style.opacity = opacity;*/
+}
+
+function handleShake() {
+  document.getElementById("status").textContent =
+    "Téléphone secoué ! " + new Date().toLocaleTimeString();
+  console.log("SHAKE DETECTED!");
+
+  console.log("Téléphone secoué !");
+  tt = tt - 0.05;
+
+  if (document.getElementById("op").style.opacity > 0)
+    document.getElementById("op").style.opacity = tt;
+}
+
+function detectShake(event) {
+  const current = event.accelerationIncludingGravity;
+
+  // Vérifier que les données sont valides
+  if (
+    !current ||
+    (current.x === null && current.y === null && current.z === null)
+  ) {
+    console.log("Pas de données d'accélération");
+    return;
+  }
+
+  const currentTime = new Date().getTime();
+
+  if (currentTime - lastTime > 100) {
+    const timeDiff = currentTime - lastTime;
+    lastTime = currentTime;
+
+    const x = current.x || 0;
+    const y = current.y || 0;
+    const z = current.z || 0;
+
+    const speed =
+      (Math.abs(x + y + z - lastX - lastY - lastZ) / timeDiff) * 10000;
+
+    console.log("Speed:", speed); // Pour déboguer
+
+    if (speed > SHAKE_THRESHOLD) {
+      handleShake();
+    }
+
+    lastX = x;
+    lastY = y;
+    lastZ = z;
+  }
+}
+
+// Fonction pour "réveiller" les capteurs
+function wakeUpSensors() {
+  console.log("Réveil des capteurs...");
+  // Créer un faux événement tactile pour réveiller les capteurs
+  const dummyListener = (e) => {
+    console.log("Capteur réveillé", e.accelerationIncludingGravity);
+  };
+
+  window.addEventListener("devicemotion", dummyListener, { once: true });
+
+  // Attendre un peu puis activer le vrai listener
+  setTimeout(() => {
+    window.removeEventListener("devicemotion", dummyListener);
+    window.addEventListener("devicemotion", detectShake);
+    isListening = true;
+    console.log("Détection active");
+  }, 100);
+}
+
+document.getElementById("activateBtn").addEventListener("click", async () => {
+  console.log("Bouton cliqué");
+
+  if (
+    typeof DeviceMotionEvent !== "undefined" &&
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    try {
+      const permission = await DeviceMotionEvent.requestPermission();
+      console.log("Permission:", permission);
+
+      if (permission === "granted") {
+        wakeUpSensors(); // Utiliser la fonction de réveil
+        document.getElementById("status").textContent =
+          "Détection activée ! Secouez votre téléphone.";
+        document.getElementById("activateBtn").style.display = "none";
+      } else {
+        document.getElementById("status").textContent = "Permission refusée";
+      }
+    } catch (error) {
+      console.error("Erreur:", error);
+      document.getElementById("status").textContent = "Erreur : " + error;
+    }
+  } else {
+    wakeUpSensors();
+    document.getElementById("status").textContent =
+      "Détection activée ! Secouez votre téléphone.";
+    document.getElementById("activateBtn").style.display = "none";
+  }
+});
+
 // Seuil de détection du secouement
-const SHAKE_THRESHOLD = 15;
+/*const SHAKE_THRESHOLD = 15;
 let lastTime = 0;
 let lastX = 0,
   lastY = 0,
@@ -18,7 +139,7 @@ function changeOpactity() {
 
   /*if (document.getElementById("op").opacity > 0)
     document.getElementById("op").style.opacity = opacity;*/
-}
+/*}
 
 function handleShake() {
   console.log("Téléphone secoué !");
@@ -81,4 +202,4 @@ document.getElementById("activateBtn").addEventListener("click", async () => {
     document.getElementById("status").textContent = "Détection activée !";
     document.getElementById("activateBtn").style.display = "none";
   }
-});
+});*/
