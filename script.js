@@ -5,7 +5,20 @@ let lastX = 0,
   lastY = 0,
   lastZ = 0;
 
-let opacity = 1.0;
+let tt = 1.0;
+
+document.getElementById("btnTest").addEventListener("click", changeOpactity);
+
+function changeOpactity() {
+  console.log("changeOpacity");
+
+  tt = tt - 0.1;
+
+  document.getElementById("op").style.opacity = tt;
+
+  /*if (document.getElementById("op").opacity > 0)
+    document.getElementById("op").style.opacity = opacity;*/
+}
 
 function handleShake() {
   console.log("Téléphone secoué !");
