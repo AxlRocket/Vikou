@@ -7,16 +7,35 @@
     <title>Vikou</title>
   </head>
   <body>
-    <button id="btnTest">Test</button>
-    <button id="activateBtn">Activate</button>
-    <div id="status">En attente...</div>
-    <div class="container">
-      <div class="polaroid-container">
-        <div class="opacity-div" id="op"></div>
-        <div class="photo-div"></div>
-      </div>
-      <div class="question">
-        <p>Veux-tu être ma valentine ?</p>
+    <div class="popup" id="popup">
+      <p>
+        Pour accéder à cette surprise tu dois activer la détection de mouvement
+      </p>
+      <button id="activateBtn">Activer la détection de mouvement</button>
+    </div>
+    <div class="flip-container" id="container">
+      <div class="flipper">
+        <div class="face front">
+          <div class="polaroid-container">
+            <div class="opacity-div" id="op"></div>
+            <div class="photo-div"></div>
+          </div>
+          <div class="question">
+            <p>Veux-tu être ma valentine ?</p>
+          </div>
+        </div>
+        <div class="face back">
+          <p class="resa-text">
+            Pickles Restaurant Chartrons
+            <br />
+            <br />
+            Le 14 Février à 19h30
+            <br />
+            <br />
+            <br />
+            Ton Vikou qui t'aime
+          </p>
+        </div>
       </div>
     </div>
   </body>

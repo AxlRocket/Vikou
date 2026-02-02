@@ -7,19 +7,6 @@ let isListening = false;
 
 let tt = 1.0;
 
-document.getElementById("btnTest").addEventListener("click", changeOpactity);
-
-function changeOpactity() {
-  console.log("changeOpacity");
-
-  tt = tt - 0.05;
-
-  document.getElementById("op").style.opacity = tt;
-
-  /*if (document.getElementById("op").opacity > 0)
-    document.getElementById("op").style.opacity = opacity;*/
-}
-
 function handleShake() {
   document.getElementById("status").textContent =
     "Téléphone secoué ! " + new Date().toLocaleTimeString();
@@ -30,6 +17,13 @@ function handleShake() {
 
   if (tt >= 0) document.getElementById("op").style.opacity = tt;
 }
+
+document.getElementById("container").addEventListener("click", () => {
+  /*if (tt <= 0.15) {
+    document.getElementById("container").classList.toggle("flipped");
+  }*/
+  document.getElementById("container").classList.toggle("flipped");
+});
 
 function detectShake(event) {
   const current = event.accelerationIncludingGravity;
@@ -100,21 +94,15 @@ document.getElementById("activateBtn").addEventListener("click", async () => {
 
       if (permission === "granted") {
         wakeUpSensors(); // Utiliser la fonction de réveil
-        document.getElementById("status").textContent =
-          "Détection activée ! Secouez votre téléphone.";
-        document.getElementById("activateBtn").style.display = "none";
-      } else {
-        document.getElementById("status").textContent = "Permission refusée";
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("container").style.display = "block";
       }
     } catch (error) {
       console.error("Erreur:", error);
-      document.getElementById("status").textContent = "Erreur : " + error;
     }
   } else {
     wakeUpSensors();
-    document.getElementById("status").textContent =
-      "Détection activée ! Secouez votre téléphone.";
-    document.getElementById("activateBtn").style.display = "none";
+    //document.getElementById("activateBtn").style.display = "none";
   }
 });
 
