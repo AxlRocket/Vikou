@@ -6,6 +6,7 @@ let lastX = 0,
 let isListening = false;
 
 let tt = 1.0;
+let qq = 0.0;
 
 function handleShake() {
   document.getElementById("status").textContent =
@@ -14,15 +15,17 @@ function handleShake() {
 
   console.log("Téléphone secoué !");
   tt = tt - 0.05;
+  qq = qq + 0.05;
 
   if (tt >= 0) document.getElementById("op").style.opacity = tt;
+  if (qq <= 1) document.getElementById("question").style.opacity = qq;
 }
 
 document.getElementById("container").addEventListener("click", () => {
-  /*if (tt <= 0.15) {
+  if (tt <= 0.15) {
     document.getElementById("container").classList.toggle("flipped");
-  }*/
-  document.getElementById("container").classList.toggle("flipped");
+  }
+  //document.getElementById("container").classList.toggle("flipped");
 });
 
 function detectShake(event) {
