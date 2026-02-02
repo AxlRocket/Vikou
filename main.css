@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.container {
+  width: 250px;
+  height: 350px;
+  border-radius: 5px;
+  margin: auto;
+  background-color: white;
+}
+
+.polaroid-container {
+  background-color: transparent;
+  border: 1px solid #aaa;
+  margin-left: 14px;
+  margin-top: 14px;
+  border-radius: 5px;
+  width: 220px;
+  height: 280px;
+  position: relative;
+}
+
+.question {
+  width: 240px;
+  height: 40px;
+  margin-left: 5px;
+  margin-top: 16px;
+  text-align: center;
+  opacity: 0;
+}
+
+.opacity-div {
+  width: 220px;
+  height: 280px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: white;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.photo-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 280px;
+  border-radius: 5px;
+  background-image: url("images.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px 0px;
+}
