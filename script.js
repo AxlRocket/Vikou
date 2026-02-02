@@ -28,8 +28,7 @@ function handleShake() {
   console.log("Téléphone secoué !");
   tt = tt - 0.05;
 
-  if (document.getElementById("op").style.opacity > 0)
-    document.getElementById("op").style.opacity = tt;
+  if (tt >= 0) document.getElementById("op").style.opacity = tt;
 }
 
 function detectShake(event) {
