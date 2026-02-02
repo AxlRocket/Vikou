@@ -22,10 +22,10 @@ function changeOpactity() {
 
 function handleShake() {
   console.log("Téléphone secoué !");
-  opacity -= 0.1;
+  tt = tt - 0.1;
 
   if (document.getElementById("op").opacity > 0)
-    document.getElementById("op").style.opacity = opacity;
+    document.getElementById("op").style.opacity = tt;
 
   // Votre code ici (vibration, animation, etc.)
 }
@@ -57,25 +57,28 @@ function detectShake(event) {
   }
 }
 
-document.getElementById('activateBtn').addEventListener('click', async () => {
-      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-        // iOS 13+
-        try {
-          const permission = await DeviceMotionEvent.requestPermission();
-          if (permission === 'granted') {
-            window.addEventListener('devicemotion', detectShake);
-            document.getElementById('status').textContent = 'Détection activée !';
-            document.getElementById('activateBtn').style.display = 'none';
-          } else {
-            document.getElementById('status').textContent = 'Permission refusée';
-          }
-        } catch (error) {
-          document.getElementById('status').textContent = 'Erreur : ' + error;
-        }
+document.getElementById("activateBtn").addEventListener("click", async () => {
+  if (
+    typeof DeviceMotionEvent !== "undefined" &&
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    // iOS 13+
+    try {
+      const permission = await DeviceMotionEvent.requestPermission();
+      if (permission === "granted") {
+        window.addEventListener("devicemotion", detectShake);
+        document.getElementById("status").textContent = "Détection activée !";
+        document.getElementById("activateBtn").style.display = "none";
       } else {
-        // Android et anciennes versions iOS
-        window.addEventListener('devicemotion', detectShake);
-        document.getElementById('status').textContent = 'Détection activée !';
-        document.getElementById('activateBtn').style.display = 'none';
+        document.getElementById("status").textContent = "Permission refusée";
       }
-    });
+    } catch (error) {
+      document.getElementById("status").textContent = "Erreur : " + error;
+    }
+  } else {
+    // Android et anciennes versions iOS
+    window.addEventListener("devicemotion", detectShake);
+    document.getElementById("status").textContent = "Détection activée !";
+    document.getElementById("activateBtn").style.display = "none";
+  }
+});
