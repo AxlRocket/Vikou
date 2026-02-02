@@ -59,7 +59,7 @@ body {
 }
 
 #container {
-  display: block;
+  display: none;
 }
 
 .face {
@@ -107,7 +107,7 @@ body {
 }
 
 #question {
-  opacity: 1;
+  opacity: 0;
 }
 
 .opacity-div {
