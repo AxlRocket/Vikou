@@ -57,19 +57,25 @@ function detectShake(event) {
   }
 }
 
-// Demander la permission (requis sur iOS 13+)
-if (
-  typeof DeviceMotionEvent !== "undefined" &&
-  typeof DeviceMotionEvent.requestPermission === "function"
-) {
-  DeviceMotionEvent.requestPermission()
-    .then((permissionState) => {
-      if (permissionState === "granted") {
-        window.addEventListener("devicemotion", detectShake);
+document.getElementById('activateBtn').addEventListener('click', async () => {
+      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+        // iOS 13+
+        try {
+          const permission = await DeviceMotionEvent.requestPermission();
+          if (permission === 'granted') {
+            window.addEventListener('devicemotion', detectShake);
+            document.getElementById('status').textContent = 'Détection activée !';
+            document.getElementById('activateBtn').style.display = 'none';
+          } else {
+            document.getElementById('status').textContent = 'Permission refusée';
+          }
+        } catch (error) {
+          document.getElementById('status').textContent = 'Erreur : ' + error;
+        }
+      } else {
+        // Android et anciennes versions iOS
+        window.addEventListener('devicemotion', detectShake);
+        document.getElementById('status').textContent = 'Détection activée !';
+        document.getElementById('activateBtn').style.display = 'none';
       }
-    })
-    .catch(console.error);
-} else {
-  // Pour Android et anciennes versions iOS
-  window.addEventListener("devicemotion", detectShake);
-}
+    });
