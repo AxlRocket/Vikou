@@ -50,6 +50,10 @@ body {
   border-radius: 5px;
 }
 
+#status {
+  color: #fff;
+}
+
 .photo-div {
   position: absolute;
   top: 0;
