@@ -12,7 +12,7 @@ document.getElementById("btnTest").addEventListener("click", changeOpactity);
 function changeOpactity() {
   console.log("changeOpacity");
 
-  tt = tt - 0.1;
+  tt = tt - 0.05;
 
   document.getElementById("op").style.opacity = tt;
 
@@ -22,7 +22,7 @@ function changeOpactity() {
 
 function handleShake() {
   console.log("Téléphone secoué !");
-  tt = tt - 0.1;
+  tt = tt - 0.05;
 
   if (document.getElementById("op").style.opacity > 0)
     document.getElementById("op").style.opacity = tt;
